@@ -2203,7 +2203,9 @@ void idRenderSystemLocal::Shutdown()
 
 	// SRS - wait for fence to hit before freeing any resources the GPU may be using, otherwise get Vulkan validation layer errors on shutdown
 	// SRS - skip this step if we are in a Doom Classic game
-	if( common->GetCurrentGame() == DOOM3_BFG )
+#ifdef USE_DOOMCLASSIC
+	if (common->GetCurrentGame() == DOOM3_BFG)
+#endif // !USE_DOOMCLASSIC	
 	{
 		backend.GL_BlockingSwapBuffers();
 	}
@@ -2329,7 +2331,6 @@ idRenderSystemLocal::RegisterFont
 */
 idFont* idRenderSystemLocal::RegisterFont( const char* fontName )
 {
-
 	idStrStatic< MAX_OSPATH > baseFontName = fontName;
 	baseFontName.Replace( "fonts/", "" );
 	for( int i = 0; i < fonts.Num(); i++ )
