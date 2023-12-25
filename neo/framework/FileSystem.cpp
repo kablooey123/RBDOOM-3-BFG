@@ -3238,7 +3238,6 @@ Returns false if the entry isn't found
 */
 bool idFileSystemLocal::GetResourceCacheEntry( const char* fileName, idResourceCacheEntry& rc )
 {
-	idStrStatic< MAX_OSPATH > canonical;
 	if( strstr( fileName, ":" ) != NULL )
 	{
 		// os path, convert to relative? scripts can pass in an OS path
@@ -3247,10 +3246,8 @@ bool idFileSystemLocal::GetResourceCacheEntry( const char* fileName, idResourceC
 		return false;
 		// DG end
 	}
-	else
-	{
-		canonical = fileName;
-	}
+
+	idStrStatic< MAX_OSPATH > canonical = fileName;
 
 	canonical.BackSlashesToSlashes();
 	canonical.ToLower();
