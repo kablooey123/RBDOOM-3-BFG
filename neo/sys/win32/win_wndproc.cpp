@@ -318,7 +318,7 @@ LONG WINAPI MainWndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam )
 			break;
 
 		case WM_SYSKEYDOWN:
-			if( wParam == 13 )  	// alt-enter toggles full-screen
+			if( wParam == VK_RETURN )  	// alt-enter toggles full-screen
 			{
 				// SRS - Use same functionality and logic as with SDL on linux and macOS
 				// DG: go to fullscreen on current display, instead of always first display
