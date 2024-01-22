@@ -51,12 +51,12 @@ idFont::RemapFont
 */
 idFont* idFont::RemapFont( const char* baseName )
 {
-	idStr cleanName = baseName;
-
-	if( cleanName == DEFAULT_FONT )
+	if( !idStr::Cmp(baseName, DEFAULT_FONT) )
 	{
 		return NULL;
 	}
+
+	idStr cleanName = baseName;
 
 	const char* remapped = idLocalization::FindString( "#font_" + cleanName );
 	if( remapped != NULL )
